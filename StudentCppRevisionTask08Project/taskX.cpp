@@ -46,5 +46,25 @@
 */
 
 string taskX(int a1, int b1, int c1, int a2, int b2, int c2) {
-	return "?";
+	if (a1 < 1 || b1 < 1 || c1 < 1 || a2 < 1 || b2 < 1 || c2 < 1) {
+		return "Error.";
+	}
+
+	int maxx = max(max(a1, b1), c1);
+	int minx = min(min(a1, b1), c1);
+	int maxy = max(max(a2, b2), c2);
+	int miny = min(min(a2, b2), c2);
+	if (maxy == maxx && miny == minx && (a2 + b2 + c2 - miny - maxy) == (a1 + b1 + c1 - minx - maxx)) {
+		return "Boxes are equal.";
+	}
+
+	if (maxy <= maxx && miny <= minx && (a2 + b2 + c2 - miny - maxy) <= (a1 + b1 + c1 - minx - maxx)) {
+		return "The first box is larger than the second one.";
+	}
+	if (maxy >= maxx && miny >= minx && (a2 + b2 + c2 - miny - maxy) >= (a1 + b1 + c1 - minx - maxx)) {
+		return "The first box is smaller than the second one.";
+	}
+
+	return "Boxes are incomparable.";
 }
+
